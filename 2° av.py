@@ -1,8 +1,9 @@
-from tkinter import messagebox, simpledialog, Tk
+from tkinter import messagebox, simpledialog
 
 # Inicializando a lista de pedidos
 pedidos = [None] * 10
 
+#função incluir pedidos
 def incluir_pedido():
     global pedidos
     for i in range(len(pedidos)):
@@ -13,15 +14,16 @@ def incluir_pedido():
                 messagebox.showinfo("Sucesso", f"Pedido {pedido} incluído na posição {i+1}")
                 break
     else:
-        messagebox.showwarning("Fila Cheia", "Não é possível incluir mais pedidos. Fila está cheia.")
+        messagebox.showwarning("Fila Cheia", "Não é possível incluir mais pedidos. A fila está cheia.")
 
+#função atender pedidos
 def atender_pedido():
     global pedidos
     if not any(pedido for pedido in pedidos if pedido is not None):
         messagebox.showwarning("Lista Vazia", "Não existem pedidos para serem atendidos.")
     
     atendido = False
-    pedido_atendido = input("Digite o número do pedido a ser atendido: ")
+    pedido_atendido = simpledialog.askstring("Atender Pedido", "Digite o número do pedido a ser atendido:")
     for i in range(len(pedidos)):
         if pedidos[i] == pedido_atendido:
             pedidos[i] = None
@@ -32,7 +34,7 @@ def atender_pedido():
     if not atendido:
         print(f"Pedido {pedido_atendido} não encontrado na lista.")
 
-
+#função listar pedido
 def listar_pedidos():
     global pedidos
     if any(pedidos):
@@ -41,6 +43,7 @@ def listar_pedidos():
     else:
         messagebox.showwarning("Lista Vazia", "Não existem pedidos registrados.")
 
+#função pesquisar pedidos
 def pesquisar_pedido():
     global pedidos
     pedido_pesquisado = simpledialog.askstring("Pesquisar Pedido", "Digite o número do pedido:")
@@ -49,12 +52,13 @@ def pesquisar_pedido():
     else:
         messagebox.showinfo("Pedido Não Encontrado", f"Pedido {pedido_pesquisado} não está na lista.")
 
+#função encerrar pedidos
 def encerrar():
     global pedidos
     if any(pedidos):
-        messagebox.showwarning("Pedidos Pendentes", "Ainda existem pedidos pendentes. Atenda todos os pedidos antes de encerrar.")
+        messagebox.showwarning("Pedidos Pendentes", "Atenção, ainda existem pedidos pendentes. \nAtenda todos os pedidos antes de encerrar.")
     else:
-        root.destroy()
+        pedidos.destroy()
 
 # Funções do Menu
 menu_options = {
@@ -66,9 +70,9 @@ menu_options = {
 }
 
 while True:
-    opcao = simpledialog.askinteger("LANCHONETE BALACO BACO", "Olá, seja bem-vindo(a). Escolha uma opção: \n \n1 – INCLUIR PEDIDO \n2 - ATENDER PEDIDO \n3 - LISTAR PEDIDOS \n4 – PESQUISAR PEDIDO \n5 – ENCERRAR \n \nDigite o número da operação desejada:")
+    opcao = simpledialog.askinteger("LANCHONETE BALACO BACO", "Olá, seja bem-vindo(a)!. Escolha uma opção: \n \n1 – INCLUIR PEDIDO \n2 - ATENDER PEDIDO \n3 - LISTAR PEDIDOS \n4 – PESQUISAR PEDIDO \n5 – ENCERRAR \n \nDigite o número da operação desejada:")
     
     if opcao in menu_options:
         menu_options[opcao]()
     else:
-        messagebox.showwarning("Opção Inválida", "Por favor, escolha uma opção válida (1 a 5).")
+        messagebox.showwarning("Opção Inválida", "Você escolheu uma opção inválida. \nPor favor, escolha uma opção válida (1 a 5).")
