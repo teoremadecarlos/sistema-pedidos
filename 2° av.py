@@ -70,7 +70,7 @@ menu_options = {
 }
 
 while True:
-    opcao = simpledialog.askinteger("LANCHONETE BALACO BACO", "Olá, seja bem-vindo(a)!. Escolha uma opção: \n \n1 – INCLUIR PEDIDO \n2 - ATENDER PEDIDO \n3 - LISTAR PEDIDOS \n4 – PESQUISAR PEDIDO \n5 – ENCERRAR \n \nDigite o número da operação desejada:")
+    opcao = simpledialog.askinteger("Lanchonete Lanchocat", "Olá, seja bem-vindo(a)!. Escolha uma opção: \n \n1 – INCLUIR PEDIDO \n2 - ATENDER PEDIDO \n3 - LISTAR PEDIDOS \n4 – PESQUISAR PEDIDO \n5 – ENCERRAR \n \nDigite o número da operação desejada:")
     
     if opcao in menu_options:
         menu_options[opcao]()
